@@ -1,0 +1,20 @@
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: api-bahn-guru-ingress
+  namespace: juliuste
+  annotations:
+    kubernetes.io/ingress.class: "nginx"
+    cert-manager.io/cluster-issuer: "certificate-issuer"
+spec:
+  tls:
+  - hosts:
+    - api.bahn.guru
+    secretName: api-bahn-guru-tls
+  rules:
+  - host: api.bahn.guru
+    http:
+      paths:
+      - backend:
+          serviceName: api-bahn-guru
+          servicePort: 80

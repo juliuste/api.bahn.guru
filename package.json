@@ -1,0 +1,33 @@
+{
+	"name": "api.bahn.guru",
+	"version": "0.0.0",
+	"private": true,
+	"description": "API for the DB price calendar (bahn.guru).",
+	"homepage": "https://github.com/public-transport/api.bahn.guru",
+	"bugs": "https://github.com/public-transport/api.bahn.guru/issues",
+	"repository": "public-transport/api.bahn.guru",
+	"license": "ISC",
+	"author": "Julius Tens <mail@juliustens.eu>",
+	"scripts": {
+		"check-deps": "depcheck",
+		"lint": "eslint src",
+		"start": "node src/index.js",
+		"test": "npm run lint && npm run check-deps"
+	},
+	"dependencies": {
+		"compression": "^1.7.4",
+		"express": "^4.17.1"
+	},
+	"devDependencies": {
+		"depcheck": "^1.2.0",
+		"eslint": "^7.7.0",
+		"eslint-config-standard": "^14.1.1",
+		"eslint-plugin-import": "^2.22.0",
+		"eslint-plugin-node": "^11.1.0",
+		"eslint-plugin-promise": "^4.2.1",
+		"eslint-plugin-standard": "^4.0.1"
+	},
+	"engines": {
+		"node": ">=12"
+	}
+}
