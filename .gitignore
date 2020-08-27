@@ -9,3 +9,5 @@
 /shrinkwrap.yaml
 
 /dist
+
+/src/routes/stations.json

@@ -1,12 +1,17 @@
 'use strict'
 
 const { Router } = require('express')
+const logger = require('pino')()
+
+const stations = require('./stations')
 
 const router = new Router()
 
-router.route('*').get(async (req, res, next) => {
-	console.log('the example deployment has been called!', new Date())
-	res.end('hello! it works!')
+router.route('/stations').get(stations)
+
+router.use((err, req, res, next) => {
+	logger.error({ err })
+	res.status(500).end('internal server error')
 })
 
 module.exports = router
