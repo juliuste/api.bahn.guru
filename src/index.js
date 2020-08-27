@@ -3,6 +3,7 @@
 const express = require('express')
 const http = require('http')
 const compression = require('compression')
+const cors = require('cors')
 
 const router = require('./routes')
 
@@ -10,6 +11,7 @@ const api = express()
 const server = http.createServer(api)
 
 api.use(compression())
+api.use(cors())
 api.use(router)
 
 const getEnv = name => {
