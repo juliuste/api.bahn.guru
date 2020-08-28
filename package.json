@@ -11,9 +11,10 @@
 	"scripts": {
 		"build": "node -e 'process.stdout.write(JSON.stringify(require(\"./build-stations.js\"), null, 4))' > src/routes/stations.json",
 		"check-deps": "depcheck",
-		"lint": "eslint src build-stations.js",
+		"lint": "eslint src test build-stations.js",
 		"start": "node src/index.js",
-		"test": "npm run lint && npm run check-deps"
+		"test": "npm run lint && npm run check-deps && npm run unit-test",
+		"unit-test": "node test/index"
 	},
 	"dependencies": {
 		"compression": "^1.7.4",
@@ -33,6 +34,9 @@
 		"eslint-plugin-promise": "^4.2.1",
 		"eslint-plugin-standard": "^4.0.1",
 		"lodash": "^4.17.20",
+		"supertest": "^4.0.2",
+		"tape": "^5.0.1",
+		"tape-promise": "^4.0.0",
 		"trainline-stations": "^1.0.3"
 	},
 	"engines": {
