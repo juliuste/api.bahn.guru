@@ -3,6 +3,7 @@
 const asyncHandler = require('express-async-handler')
 const hafas = require('db-hafas')('api.bahn.guru')
 const stations = require('./stations.json')
+const stationsMap = new Map(Object.entries(stations))
 
 const requestHandler = asyncHandler(async (req, res, next) => {
 	if (!req.query.query) return res.status(400).end('missing query')
@@ -16,7 +17,7 @@ const requestHandler = asyncHandler(async (req, res, next) => {
 		entrances: false,
 		linesOfStops: false,
 	})
-	res.status(200).json(matches.map(m => stations[String(m.id)]).filter(s => !!s))
+	res.status(200).json(matches.map(m => stationsMap.get(String(m.id))).filter(s => !!s))
 })
 
 module.exports = requestHandler
