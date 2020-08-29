@@ -7,6 +7,9 @@ const addPromiseSupport = require('tape-promise').default
 const tape = addPromiseSupport(tapeWithoutPromise)
 
 const router = require('../../src/routes')
+router.use('/error', (req, res, next) => {
+	throw new Error('something went wrong')
+})
 const app = express()
 app.use(router)
 

@@ -1,17 +1,14 @@
 'use strict'
 
 const { Router } = require('express')
-const logger = require('pino')()
+const prices = require('db-prices')
 
 const stations = require('./stations')
+const { requestHandler: journeys } = require('./journeys')
 
 const router = new Router()
 
 router.route('/stations').get(stations)
-
-router.use((err, req, res, next) => {
-	logger.error({ err })
-	res.status(500).end('internal server error')
-})
+router.route('/journeys').get(journeys(prices))
 
 module.exports = router

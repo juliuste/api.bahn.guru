@@ -17,11 +17,14 @@
 		"unit-test": "node test/index"
 	},
 	"dependencies": {
+		"ajv": "^6.12.4",
 		"compression": "^1.7.4",
 		"cors": "^2.8.5",
 		"db-hafas": "^5.0.2",
+		"db-prices": "^3.0.3",
 		"express": "^4.17.1",
 		"express-async-handler": "^1.1.4",
+		"luxon": "^1.25.0",
 		"pino": "^6.5.1"
 	},
 	"devDependencies": {
