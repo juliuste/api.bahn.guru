@@ -1,0 +1,48 @@
+{
+	"type": "journey",
+	"id": "0",
+	"origin": {
+		"type": "station",
+		"id": "8098160",
+		"name": "Berlin Hbf (tief)"
+	},
+	"destination": {
+		"type": "station",
+		"id": "8000105",
+		"name": "Frankfurt(Main)Hbf"
+	},
+	"legs": [
+		{
+			"origin": {
+				"type": "station",
+				"id": "8098160",
+				"name": "Berlin Hbf (tief)"
+			},
+			"departure": "2020-08-30T22:26:00.000Z",
+			"departurePlatform": "1",
+			"destination": {
+				"type": "station",
+				"id": "8000105",
+				"name": "Frankfurt(Main)Hbf"
+			},
+			"arrival": "2020-08-31T04:40:00.000Z",
+			"arrivalPlatform": "5",
+			"line": {
+				"type": "line",
+				"id": "ic-1950",
+				"name": "IC  1950",
+				"mode": "train",
+				"product": "IC"
+			}
+		}
+	],
+	"price": {
+		"currency": "EUR",
+		"amount": 67.4,
+		"discount": true,
+		"name": "Super Sparpreis",
+		"description": "You can use all trains and IC Bus services indicated on your ticket. You can use any local train (i.e. RE, RB, S). Passengers on train and IC Bus services with mandatory reservation must reserve a seat. A 3-D Secure Code may be required for credit card payments.<br/>Cancellation (exchange or refund) of your ticket is excluded.",
+		"anyTrain": false
+	},
+	"nightTrain": false
+}

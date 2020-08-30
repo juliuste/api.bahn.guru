@@ -1,4 +1,4 @@
 'use strict'
 
 require('./routes')
-require('./routes/journeys')
+require('./routes/journey-summaries')

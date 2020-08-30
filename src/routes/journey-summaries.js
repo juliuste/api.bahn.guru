@@ -4,6 +4,9 @@ const asyncHandler = require('express-async-handler')
 const { DateTime } = require('luxon')
 const Ajv = require('ajv')
 const logger = require('pino')()
+const first = require('lodash/first')
+const last = require('lodash/last')
+const cleanStationName = require('db-clean-station-name')
 
 const passengersSchema = {
 	type: 'array',
@@ -34,6 +37,21 @@ const passengersSchema = {
 }
 
 const validatePassengers = new Ajv({ allErrors: true }).compile(passengersSchema)
+
+const createJourneySummary = journey => {
+	if (!journey.price || !journey.price.amount || journey.price.currency !== 'EUR') return null
+	return {
+		originName: cleanStationName(journey.origin.name),
+		destinationName: cleanStationName(journey.destination.name),
+		departure: first(journey.legs).departure,
+		arrival: last(journey.legs).arrival,
+		transfers: journey.legs.length - 1,
+		price: {
+			amount: journey.price.amount,
+			currency: journey.price.currency,
+		},
+	}
+}
 
 const loyaltyCardId = (loyaltyCard, wagonClass) => {
 	if (loyaltyCard === 'bahncard25') {
@@ -84,7 +102,9 @@ const requestHandler = fetchFn => asyncHandler(async (req, res, next) => {
 			bc: passenger.loyaltyCard ? loyaltyCardId(passenger.loyaltyCard, req.query.class) : 0,
 		})),
 	})
-	return res.json(journeys)
+
+	const journeySummaries = journeys.map(createJourneySummary).filter(Boolean)
+	return res.json(journeySummaries)
 })
 
 module.exports = { loyaltyCardId, requestHandler }
